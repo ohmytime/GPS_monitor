@@ -183,6 +183,20 @@ void loop() {
       lcd.print("Km/h");
     }
   }
+  
+  if (gps.satellites.value()) {
+    int satV;
+    satV = (int)(gps.satellites.value());
+    if (satV < 10) {
+      lcd.setCursor(7, 1);
+      lcd.print(satV);
+      lcd.setCursor(8, 1);
+      lcd.print("S");
+    } else {
+      lcd.setCursor(7, 1);
+      lcd.print(satV);
+    }
+  }
 
   if (gps.course.isUpdated()) {
     if ((gps.course.deg()) == 0) {
