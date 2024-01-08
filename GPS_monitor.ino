@@ -183,7 +183,7 @@ void loop() {
       lcd.print("Km/h");
     }
   }
-  
+
   if (gps.satellites.value()) {
     int satV;
     satV = (int)(gps.satellites.value());
@@ -196,6 +196,14 @@ void loop() {
       lcd.setCursor(7, 1);
       lcd.print(satV);
     }
+  }
+
+  // 显示经纬度
+  if (gps.location.isValid()) {
+    lcd.setCursor(0, 0);
+    lcd.print(gps.location.lat());
+    lcd.setCursor(0, 1);
+    lcd.print(gps.location.lng());
   }
 
   if (gps.course.isUpdated()) {
